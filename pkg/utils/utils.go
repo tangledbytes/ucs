@@ -20,8 +20,16 @@ func HTTPGet(host string, headers map[string]string) (*http.Response, error) {
 	return http.DefaultClient.Do(req)
 }
 
+// LogIfError logs the error if it's not nil
 func LogIfError(err error) {
 	if err != nil {
 		logrus.Error(err)
+	}
+}
+
+// PanicIfError panics if the error is not nil
+func PanicIfError(err error) {
+	if err != nil {
+		logrus.Panic(err)
 	}
 }

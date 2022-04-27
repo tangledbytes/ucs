@@ -1,3 +1,11 @@
-.PHONY: build
+BINARY_NAME=ucs
+
 build:
-	go build -o bin/ucs .
+	go build -o bin/${BINARY_NAME} .
+
+test:
+	go test -v ./...
+
+clean:
+	go clean
+	rm -rf bin
