@@ -1,10 +1,12 @@
 package utils
 
-import "net/http"
+import (
+	"net/http"
+
+	"github.com/sirupsen/logrus"
+)
 
 // HTTPGet takes a host and headers and returns a response
-//
-// If headers is nil then no headers are sent
 func HTTPGet(host string, headers map[string]string) (*http.Response, error) {
 	req, err := http.NewRequest(http.MethodGet, host, nil)
 	if err != nil {
@@ -16,4 +18,10 @@ func HTTPGet(host string, headers map[string]string) (*http.Response, error) {
 	}
 
 	return http.DefaultClient.Do(req)
+}
+
+func LogIfError(err error) {
+	if err != nil {
+		logrus.Error(err)
+	}
 }
